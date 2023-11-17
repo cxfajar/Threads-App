@@ -1,49 +1,52 @@
-import React from "react";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
+import Image from "next/image";
+import Link from "next/link";
+import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
-import "../globals.css";
-import LeftSidebar from "@/components/shared/LeftSidebar";
-import Bottombar from "@/components/shared/Bottombar";
-import RightSidebar from "@/components/shared/RightSidebar";
-import Topbar from "@/components/shared/Topbar";
+import { fetchUser, getActivity } from "@/lib/actions/user.actions";
 
-const inter = Inter({ subsets: ["latin"] });
+async function Page() {
+  const user = await currentUser();
+  if (!user) return null;
 
-export const metadata: Metadata = {
-  title: "Threads",
-  description: "A Next.js 13 Meta Threads application",
-};
+  const userInfo = await fetchUser(user.id);
+  if (!userInfo?.onboarded) redirect("/onboarding");
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+  const activity = await getActivity(userInfo._id);
+
   return (
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-    >
-      <html lang='en'>
-        <body className={inter.className}>
-          <Topbar />
+    <>
+      <h1 className='head-text'>Activity</h1>
 
-          <main className='flex flex-row'>
-            <LeftSidebar />
-            <section className='main-container'>
-              <div className='w-full max-w-4xl'>{children}</div>
-            </section>
-            {/* @ts-ignore */}
-            <RightSidebar />
-          </main>
-
-          <Bottombar />
-        </body>
-      </html>
-    </ClerkProvider>
+      <section className='mt-10 flex flex-col gap-5'>
+        {activity.length > 0 ? (
+          <>
+            {activity.map((activity) => (
+              <Link key={activity._id} href={`/thread/${activity.parentId}`}>
+                <article className='activity-card'>
+                  <Image
+                    src={activity.author.image}
+                    alt='user_logo'
+                    width={20}
+                    height={20}
+                    className='rounded-full object-cover'
+                  />
+                  <p className='!text-small-regular text-light-1'>
+                    <span className='mr-1 text-primary-500'>
+                      {activity.author.name}
+                    </span>{" "}
+                    replied to your thread
+                  </p>
+                </article>
+              </Link>
+            ))}
+          </>
+        ) : (
+          <p className='!text-base-regular text-light-3'>No activity yet</p>
+        )}
+      </section>
+    </>
   );
 }
+
+export default Page;
