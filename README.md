@@ -14,20 +14,25 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 [https://dashboard.clerk.com/](https://dashboard.clerk.com/)
 
-##Run these dependencies on terminal
+## Run these dependencies on terminal
 
 npx create-next-app@latest  ./
 
-copy/paste my package.json file, delete your node modules folder, delete package-lock.json, then run      npm install 
+## Copy/paste my package.json file, delete your node modules folder, delete package-lock.json, then run      npm install 
 
 
 npm install tailwindcss-animate
+
 npm install @clerk/themes
 
 npx shadcn-ui@latest init
+
 npx shadcn-ui@latest add form
+
 npx shadcn-ui@latest add input
+
 npx shadcn-ui@latest add textarea
+
 Npx shadcn-ui@latest add tabs
 
 
