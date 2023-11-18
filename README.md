@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-[checkout this Thread app live](https://threads-app-sand-eight.vercel.app/)
+[Thread Application](https://threads-app-git-main-cxfajars-projects.vercel.app/sign-up)
 
 First, run the development server:
 
