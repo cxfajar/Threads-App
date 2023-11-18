@@ -9,7 +9,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 
 ## MongoDB handling of complex schemas, multiple data population
-(https://cloud.mongodb.com/v2/65576df55c5860086fb4460e#/overview)[https://cloud.mongodb.com/v2/65576df55c5860086fb4460e#/overview]
+[https://cloud.mongodb.com/](https://cloud.mongodb.com/v2/65576df55c5860086fb4460e#/overview)
 
 
 [https://dashboard.clerk.com/](https://dashboard.clerk.com/)
