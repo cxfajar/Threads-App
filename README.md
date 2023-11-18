@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+[checkout this Thread app live](https://threads-app-sand-eight.vercel.app/)
+
 First, run the development server:
 
 ```bash
